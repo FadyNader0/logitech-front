@@ -1,0 +1,87 @@
+@import './theme/colors.css';
+@font-face {
+  font-family: 'Azonix'; /* or 'Aexir' */
+  src: url('./assets/fonts/Azonix.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+/* start rules  */
+*{
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+ol {
+    list-style: none;
+}
+p{
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+button{
+    border: none;
+    box-shadow: none;
+}
+body{
+    font-family: 'Azonix', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: var(--background-color);
+    color: white;
+    padding: 10px 10px;
+}
+.pages {
+    margin-left: 105px;
+}
+
+
+
+.splash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 97vh;
+  background: white;
+  color: black;
+  border-radius: 50px;
+  width: 98%;
+  margin: auto;
+  position: relative;
+}
+
+.splash .logo {
+  width: 350px;
+  height: 100px;
+  position: absolute;
+  top: 40%;
+  transform: translatey(-40%);
+}
+
+.progress-container {
+  width: 90%;
+  height: 20px;
+  background: rgb(145, 143, 143);
+  border-radius: 10px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 30px;
+  
+}
+
+.progress-bar {
+  height: 100%;
+  background: black;
+  transition: width 0.1s linear;
+}
+
+.splash p {
+  margin-top: 10px;
+  font-size: 18px;
+  color: cyan;
+}
