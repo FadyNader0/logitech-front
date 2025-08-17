@@ -20,13 +20,13 @@ function SplashScreen() {
       } else {
         setProgress(current);
       }
-    }, 80); 
+    }, 90); 
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="splash">
+    <div className="splash" data-aos="zoom-in-up" data-os-duration="1000">
       <img src={logo} alt="Logo" className="logo" />
       <div className="progress-container">
         <div className="progress-bar" style={{ width: `${progress}%` }}></div>

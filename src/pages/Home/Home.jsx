@@ -55,7 +55,7 @@ export default function Home() {
           </div>
             <img src={Image} alt="Logitech Speaker" className="w-[100%] h-[180px] object-cover "/>
         </Card>
-        <Card className="max-w-sm card-content h-[48%] mt-[20px]">
+        <Card className="max-w-sm card-content h-[46%] mt-[20px]">
             <img src={Image2} alt="Logitech Speaker" className="w-[100%] h-[180px] object-cover rounded-lg mt-4" />
             <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
               Easy Control 

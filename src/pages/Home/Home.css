@@ -99,7 +99,14 @@
     border: none;
     border-radius: 20px;
     overflow: auto;
+    margin-top: 20px;
+    transform: perspective(1000px) rotateY(-10deg);
+    transition: all 0.5s ;
 }
+.home .homeContent .card-content:hover{
+    transform: perspective(1000px) rotateY(0deg) translateY(-20px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}   
 .home .homeContent .first-card{
     position: relative;
 }
@@ -115,3 +122,4 @@
 
 
 }
+
