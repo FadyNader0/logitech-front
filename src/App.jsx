@@ -28,7 +28,7 @@ function App() {
   }
 
   return (
-    <div className="flex">
+    <>
       <NavBar />
       <div className="pages">
         <Routes>
@@ -36,7 +36,7 @@ function App() {
           <Route path="/shop" element={<Shop />} />
         </Routes>
       </div>
-    </div>
+    </>
   );
 }
 

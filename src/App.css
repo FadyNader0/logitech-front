@@ -34,7 +34,7 @@ body{
     background-color: var(--background-color);
     color: white;
     padding: 10px 10px;
-    overflow: hidden;
+    display: flex;
 }
 .pages {
     margin-left: 105px;
