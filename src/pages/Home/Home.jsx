@@ -1,17 +1,18 @@
+import { BiSupport } from "react-icons/bi"; 
 import { AiOutlineMenuFold } from "react-icons/ai"; 
 import { Link } from 'react-router-dom';
-import { Button, Card } from "flowbite-react";
-import { Carousel } from "flowbite-react";
+import { Card } from "flowbite-react";
 import Image from "../../assets/images/stero.png";
 import Image2 from "../../assets/images/control.png";
 import './Home.css';
 export default function Home() {
   return (
-    <div className="home">
+    <div className="home" data-aos="zoom-in" data-aos-duration="1500">
       <div className="homeProduct" data-aos="zoom-out">
         <div className="upContent flex justify-between">
           <div className="linksHome" data-aos="zoom-out">
-            <Link to="/products" className="linkHome">Contact US</Link>
+            {/* <Link to="/products" className="linkHome">Contact US</Link> */}
+            <Link to="/support" className="linkHome"><BiSupport /></Link>
           </div>
           <div className="nameBrand">
             <h1 className="brandName" data-aos="zoom-out-up" data-aos-delay="700">Logitech</h1>

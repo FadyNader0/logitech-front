@@ -1,39 +1,13 @@
 import { Routes, Route } from "react-router";
 import { useState, useEffect } from "react";
-import logo from "./assets/images/logo2.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./App.css";
 import Home from "./pages/Home/Home";
 import Shop from "./pages/Shop/Shop";
 import NavBar from "./components/NavBar/NavBar";
+import SplashScreen from "./components/SplashScreen/SplashScreen";
 
-function SplashScreen() {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    let current = 0;
-    const interval = setInterval(() => {
-      current += 2.8;
-      if (current > 100) {
-        clearInterval(interval);
-      } else {
-        setProgress(current);
-      }
-    }, 90); 
-
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="splash" data-aos="zoom-in-up" data-os-duration="1000">
-      <img src={logo} alt="Logo" className="logo" />
-      <div className="progress-container">
-        <div className="progress-bar" style={{ width: `${progress}%` }}></div>
-      </div>
-    </div>
-  );
-}
 
 function App() {
     useEffect(() => {

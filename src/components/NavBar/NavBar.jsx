@@ -1,10 +1,9 @@
+import { AiFillHeart } from "react-icons/ai"; 
+import { BsFillCartCheckFill } from "react-icons/bs"; 
 import { IoIosPeople } from "react-icons/io"; 
 import { RiLogoutBoxRLine } from "react-icons/ri"; 
-import { AiOutlineBell } from "react-icons/ai"; 
-import { SiAboutdotme } from "react-icons/si"; 
 import { AiFillHome } from "react-icons/ai"; 
 import { AiFillShopping } from "react-icons/ai"; 
-import { AiFillSetting } from "react-icons/ai"; 
 import { MdAccountCircle } from "react-icons/md"; 
 import { Link, useLocation } from 'react-router-dom';
 import Logo from '../Logo/Logo';
@@ -19,25 +18,32 @@ export default function NavBar() {
       <div className="icons flex justify-center ">
           <ul >
             <li className={`icon ${location.pathname === '/account' ? 'active' : ''}`}>
-              <Link to="account"><MdAccountCircle /></Link>
+              <Link to="account" className="link"><MdAccountCircle /></Link>
+              <h6>account</h6>
             </li>
             <li className={`icon ${location.pathname === '/settings' ? 'active' : ''}`}>
-              <Link to="/settings"><AiFillSetting /></Link>
+              <Link to="/settings"><BsFillCartCheckFill /></Link>
+              <h6>Cart</h6>
             </li>
             <li className={`icon ${location.pathname === '/shop' ? 'active' : ''}`}>
               <Link to="/shop"><AiFillShopping /></Link>
+              <h6>Shop</h6>
             </li>
             <li className={`icon ${location.pathname === '/' ? 'active' : ''}`}>
                 <Link to="/"><AiFillHome /></Link>
+                <h6>Home</h6>
             </li>
             <li className={`icon ${location.pathname === '/about' ? 'active' : ''}`}>
                 <Link to="/about"><IoIosPeople /></Link>
+                <h6>AboutUS</h6>
             </li>
-            <li className={`icon ${location.pathname === '/notf' ? 'active' : ''}`}>
-                <Link to="/notf"><AiOutlineBell /></Link>
+            <li className={`icon ${location.pathname === '/favourites' ? 'active' : ''}`}>
+                <Link to="/favourites"><AiFillHeart /></Link>
+                <h6>Favourites</h6>
             </li>
             <li className={`icon ${location.pathname === '/logout' ? 'active' : ''}`}>
                 <Link><RiLogoutBoxRLine /></Link>
+                <h6>Logout</h6>
             </li>
           </ul>
       </div>
