@@ -1,7 +1,8 @@
 @import '../../theme/colors.css';
+
 .home{
     height: calc(100vh - 25px);
-    color: white;
+    color: var(--icon-color);
     position: relative;
     width: calc(100vw - 130px);
     overflow: hidden;
@@ -11,28 +12,20 @@
 }
 .homeProduct {
     width: 79%;
-    background-image: url('../../assets/images/home-background3.jpg');
+    /* background-image: url('../../assets/images/test caht3.png');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center; */
     border-radius: 20px;
     margin-right: 20px;
     padding: 15px;
+    position: relative;
 
 }
 
 .home .homeProduct .linksHome .linkHome{
     font-size: 20px;
-    border: 1px solid white;
-    padding: 10px;
     border-radius: 50%;
-    transition: all 0.5s ease-in-out;
-    display: inline-block;
-}
-.home .homeProduct .linksHome .linkHome:hover{
-    background-color: var(--background2-color);
-    transform: scale(1.1);
-    border-color: var(--background2-color);
 }
 .home .homeProduct .nameBrand h1{
     font-size: 35px;
@@ -58,13 +51,26 @@
 
 .home .homeProduct .buttonNav .button{
     font-size: 40px;
-    border: 1px solid white;
+    border: 1px solid var(--icon-color);
     padding: 10px;
     border-radius: 50%;
     cursor: pointer;
 }
 
 
+.home .homeProduct .centerContent{
+    height: 100vh;
+    position: relative;
+}
+.home .homeProduct .centerContent .speaker{
+    position: absolute;
+    left: 60%;
+    bottom: -50px;
+    transform: translateX(-60%);
+    z-index: 1;
+
+    
+}
 .home .homeProduct .downContent{
     position: absolute;
     bottom: 0;
@@ -78,7 +84,7 @@
     box-shadow: 4px -8px 0px 20px var(--background-color);
 }
 .home .homeProduct .downContent .card-content .btn-shop{
-    background-color: white;
+    background-color: var(--icon-color);
     color: var(--background2-color);
     transition: all 0.5s ease-in-out;
 
@@ -127,12 +133,11 @@
         padding: 0;
         height: fit-content;
     }
-
-
     .home .homeProduct {
         width: 100%;
         margin-right: 0;
         height: 100vh;
+        
     }
     .home .homeProduct .nameBrand h1{
         font-size: 25px;
@@ -154,14 +159,28 @@
     
 }
 @media(max-width: 538px) {
+    .home .homeProduct{
+        height: 70vh;
+    }
+    .home .homeProduct .downContent {
+        bottom: -210px;
+        
+        
+    }
+    .home .homeProduct .downContent .card-content {
+        max-width: 100% !important;
+        box-shadow: none;
+        border-radius: 45px;
+        padding-bottom: 10px;
+    }
     .home .homeContent {
+        margin-top: 235px;
         flex-direction: column;
     }
     .home .homeContent .card-content{
         max-width: 100% !important;
         margin-bottom: 20px;
     }
-    
 }
 
 @media(max-width: 480px) {

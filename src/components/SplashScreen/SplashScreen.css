@@ -1,0 +1,38 @@
+.splash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 97vh;
+  background: white;
+  color: black;
+  border-radius: 50px;
+  width: 98%;
+  margin: auto;
+  position: relative;
+}
+
+.splash .logo {
+  width: 350px;
+  height: 100px;
+  position: absolute;
+  top: 40%;
+  transform: translatey(-40%);
+}
+
+.progress-container {
+  width: 90%;
+  height: 20px;
+  background: rgb(145, 143, 143);
+  border-radius: 10px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 30px;
+  
+}
+
+.progress-bar {
+  height: 100%;
+  background: black;
+  transition: width 0.1s linear;
+}
+

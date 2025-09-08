@@ -1,0 +1,241 @@
+@import '../../theme/colors.css';
+.login-page{
+    width: calc(100% - 20px);
+    height: 96vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Arial", sans-serif;
+}
+
+.login-page .content-page{
+    width: 100%;
+    height: 80%;
+    background-color: var(--background2-color);
+    position: relative;
+}
+.login-page .content-page .welcome{
+    transition: all 1.5s ease-in-out;
+    text-align: center;
+    padding-top: 100px;
+    position: absolute;
+    z-index: 2;
+}
+.login-page .content-page .welcome.login{
+    background-color: var(--primary-color);
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    left: 0;
+    border-bottom-left-radius: 200px;
+    border-top-right-radius: 300px;
+    
+}
+.login-page .content-page .welcome.sign-up{
+    background-color: var(--primary-color);
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    border-bottom-right-radius: 200px;
+    border-top-left-radius: 300px; 
+}
+.login-page .content-page .welcome .logo img{
+    width: 120px;
+}
+.login-page .content-page .welcome .content{
+    width: 50%;
+    margin: auto;
+    margin-top: 60px;
+}
+.login-page .content-page .welcome .content p{
+    color: var(--secondary-color);
+}
+
+.form .login{
+    width: 50%;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    padding: 0px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form .login h3{
+    color: var(--primary-color);
+}    
+.form .login p{
+    margin-bottom: 40px;
+}
+.input-group {
+  position: relative;
+  width: 80%;
+  margin-top: 20px;
+
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 14px;
+  border: 2px solid #444;
+  border-radius: 12px;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+
+}
+
+.input-group label {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.3s ease all;
+  background: #0f0f0f;
+  padding: 0 6px;
+  border-radius: 4px;
+}
+
+.input-group input:focus,
+.input-group input:valid {
+  border-color: #4cafef;
+}
+
+.input-group input:focus ~ label,
+.input-group input:valid ~ label {
+  top: -8px;
+  font-size: 13px;
+  color: #4cafef;
+}
+.remember-me {
+  width: 80%;
+  padding-left: 20px;
+}
+
+
+.login-btn {
+  width: 80%;
+  padding: 14px;
+  /* background: linear-gradient(135deg, #4cafef, #3a86ff); */
+  background-color:  #0668fa2d;
+  
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.5s ease;
+  position: relative;
+}
+
+.login-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.signup-text {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #aaa;
+  text-align: center;
+}
+
+.signup-link {
+  color: #4cafef;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+  color: #3a86ff;
+}
+
+.form .sign-up{
+    width: 50%;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    padding: 0px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form .sign-up h3{
+    color: var(--primary-color);
+}    
+.form .sign-up p{
+    margin-bottom: 40px;
+}
+.file-input {
+  width: 80%;
+}
+.file-label {
+  display: block;
+  width: 95%;
+  border: 2px dashed #444;
+  border-radius: 12px;
+  color: #aaa;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.file-label:hover {
+  border-color: #4cafef;
+  color: #4cafef;
+}
+
+
+
+@media(max-width: 1023px) {
+    .login-page {
+        height: fit-content;
+        padding: 20px 0;
+    }
+    .login-page .content-page .welcome.login{
+        background-color: var(--primary-color);
+        height: 50%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-bottom-left-radius: 200px;
+        border-top-right-radius: 200px;
+    
+    }
+    .login-page .content-page .welcome.sign-up{
+        background-color: var(--primary-color);
+        height: 50%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        border-bottom-right-radius: 200px;
+        border-top-left-radius: 200px; 
+    }
+    .login-page .content-page .welcome .content {
+        width: 80%;
+        margin-top: 20px;
+    }
+    .form {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    .form .login,
+    .form .sign-up {
+        width: 100%;
+        position: relative;
+        padding: 20px 40px 40px 40px;
+    }
+}

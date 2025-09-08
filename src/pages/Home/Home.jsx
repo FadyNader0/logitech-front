@@ -1,24 +1,46 @@
-import { BiSupport } from "react-icons/bi"; 
 import { AiOutlineMenuFold } from "react-icons/ai"; 
 import { Link } from 'react-router-dom';
 import { Card } from "flowbite-react";
 import Image from "../../assets/images/stero.png";
 import Image2 from "../../assets/images/control.png";
+import { useDispatch } from 'react-redux'
+import { toggleOpenClose } from '../../features/NavBar/Open&Close';
+import Logo from '../../components/Logo/Logo';
 import './Home.css';
+
+
+
 export default function Home() {
+  const dispatch = useDispatch();
+  
+
   return (
     <div className="home" data-aos="zoom-in" data-aos-duration="1500">
       <div className="homeProduct" data-aos="zoom-out">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+        >
+          <source src="/videos/background11.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+
+
         <div className="upContent flex justify-between">
           <div className="linksHome" data-aos="zoom-out">
-            {/* <Link to="/products" className="linkHome">Contact US</Link> */}
-            <Link to="/support" className="linkHome"><BiSupport /></Link>
+            <Link to="/" className="linkHome">
+                <Logo />
+            </Link>
           </div>
           <div className="nameBrand">
             <h1 className="brandName" data-aos="zoom-out-up" data-aos-delay="700">Logitech</h1>
           </div>
-          <div className="buttonNav">
-            <AiOutlineMenuFold className="button"/>
+          <div className={`buttonNav ${window.innerWidth > 1023 ? "disabled-link" : ""}`} >
+            <AiOutlineMenuFold className="button" onClick={() => dispatch(toggleOpenClose())}/>
           </div>
         </div>
         <div className="downContent" data-aos="zoom-in-right" data-aos-delay="700">
@@ -42,7 +64,6 @@ export default function Home() {
 
           </Card>
         </div>  
-
       </div>
       <div className="homeContent" data-aos="zoom-in-left" data-aos-delay="700">
         <Card className="max-w-sm card-content h-[50%] pt-[40px] w-[100%] first-card">

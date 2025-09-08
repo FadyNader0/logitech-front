@@ -1,4 +1,18 @@
 :root {
   --background-color: #1e1e1e;
   --background2-color: #0d0d0d;
+  --icon-color: white;
+  --primary-color: #3a82f7; /* أزرق كهربائي */
+  --secondary-color: #e0e0e0; /* رمادي فاتح */
+  --accent-color: #00ff99;
+
+  /* Shop Page Colors */
+  --shop-primary: #3a82f7;
+  --shop-secondary: #6366f1;
+  --shop-accent: #00ff99;
+  --shop-success: #10b981;
+  --shop-warning: #f59e0b;
+  --shop-error: #ef4444;
+
+  
 }

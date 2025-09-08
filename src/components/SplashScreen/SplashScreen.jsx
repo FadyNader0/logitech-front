@@ -1,3 +1,4 @@
+import './SplashScreen.css'
 import { useEffect, useState } from "react";
 import logo from "../../assets/images/logo2.png";
 
