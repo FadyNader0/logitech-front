@@ -4,13 +4,35 @@ import { useCartData } from '../../utilitas/getCartData';
 import { useSelector } from 'react-redux';
 import LoadingShop from '../LoadinShop/LoadinShop'
 import { useState } from 'react';
+import {updateQuantityCart} from '../../utilitas/updateQuantityCart'
+import {removeFromCart} from '../../utilitas/removeFromCart'
+import { toast } from 'react-toastify';
 
 export default function Cart({showCart, onClose}){
   const [isLoadin2 , setIsLoading2] = useState(false)
-  const isLoading = useCartData()
+  const { isLoading, fetchCart } = useCartData();
   const cart = useSelector(state => state.cart.info);
   const CartTotal = cart.reduce((sum, item) => sum + Number(item.total), 0);
   const formattedTotal = CartTotal.toFixed(2);
+  // const { allcart , fetchCart } = useCartData(); 
+  const handleUpdate = async (rowID , quantity) => {
+    setIsLoading2(true)
+    await updateQuantityCart(rowID, quantity);
+    fetchCart(); 
+    setIsLoading2(false)
+  };
+  const handleRemove = async (rowID ) => {
+    setIsLoading2(true)
+    await removeFromCart(rowID);
+    fetchCart(); 
+    setIsLoading2(false)
+  };
+  const handleCheckout = () => {
+    toast.info("Processing payment... ⏳");
+    setTimeout(() => {
+        toast.error("Payment failed ❌ (This is only a Demo)");
+    }, 5000);
+  };
 
 
   return (
@@ -49,13 +71,16 @@ export default function Cart({showCart, onClose}){
                         <span>$ {item.priceProduct}</span>
                         {item.quantity !== "1" && <span>total : $ {item.total}</span>}
                       </p>
-                      <div className="quantity-controls">
-                        <button>-</button>
+                      <div className= "quantity-controls">
+                        <button className={`btn-increase ${item.quantity <= 1 ? ("disabled") : ""}`} 
+                          onClick={() => handleUpdate(item.id, item.quantity - 1)}
+                          disabled={item.quantity <= 1} 
+                        >-</button>
                         <span>{item.quantity}</span>
-                        <button>+</button>
+                        <button onClick={() => handleUpdate(item.id, Number(item.quantity) + 1)}>+</button>
                       </div>
                     </div>
-                    <button className="remove-item">
+                    <button className="remove-item" onClick={() => handleRemove(item.id)}>
                       <FaTimes />
                     </button>
                   </div>
@@ -67,11 +92,10 @@ export default function Cart({showCart, onClose}){
                   <span>Total:</span>
                   <span>{formattedTotal}</span>
                 </div>
-                <button className="checkout-btn">Proceed to Checkout</button>
+                <button className="checkout-btn" onClick={() =>{handleCheckout()}}>Proceed to Checkout</button>
               </div>
             </>
       )}
-
       </div>
 
       {/* Overlay */}
@@ -84,7 +108,3 @@ export default function Cart({showCart, onClose}){
     </>
   );
 }
-
-
-// onClick={() => updateCartQuantity(item.id, item.quantity - 1)}
-// onClick={() => removeFromCart(item.id)}

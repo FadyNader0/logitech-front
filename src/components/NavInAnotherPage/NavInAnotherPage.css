@@ -1,0 +1,33 @@
+@import '../../theme/colors.css';
+
+.navbar-another{
+    position: fixed;
+    width: 98%;
+    background-color: var(--background2-color);
+    border-radius: 20px;
+    box-shadow: 0px 0px 8px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.5s ease-in-out;
+    padding: 15px 30px;
+    transform: translateY(-180%);
+}
+.navbar-another .barnd-name h1{
+    animation: blink 2s infinite;
+}
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 20px var(--primary-color); 
+  }
+  50% {
+    opacity: 0.3;
+    text-shadow: none;
+  }
+}
+
+@media (max-width: 1023px) {
+    .navbar-another{
+        transform: translateY(0);
+    }
+    
+}

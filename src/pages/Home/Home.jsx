@@ -22,14 +22,16 @@ export default function Home() {
           muted
           loop
           playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+          className="
+            absolute top-0 left-0 w-full h-full
+            object-fill
+            -z-10
+            bg-black
+          "
         >
-          <source src="/videos/background11.mp4" type="video/mp4" />
+          <source src="/videos/background3.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-
-
-
         <div className="upContent flex justify-between">
           <div className="linksHome" data-aos="zoom-out">
             <Link to="/" className="linkHome">
@@ -44,7 +46,7 @@ export default function Home() {
           </div>
         </div>
         <div className="downContent" data-aos="zoom-in-right" data-aos-delay="700">
-          <Card className="max-w-[350px] card-content">
+          <Card className="max-w-[350px] card-content-home">
             <h5 className="text-lg font-bold tracking-tight ">
               Explore Logitech Speaker
             </h5>
@@ -66,7 +68,7 @@ export default function Home() {
         </div>  
       </div>
       <div className="homeContent" data-aos="zoom-in-left" data-aos-delay="700">
-        <Card className="max-w-sm card-content h-[50%] pt-[40px] w-[100%] first-card">
+        <Card className="max-w-sm card-content-home h-[50%] pt-[40px] w-[100%] first-card">
           <div className="content">
               <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white ">
                 Crystal-Clear Stereo Sound
@@ -77,7 +79,7 @@ export default function Home() {
           </div>
             <img src={Image} alt="Logitech Speaker" className="w-[100%] h-[180px] object-cover "/>
         </Card>
-        <Card className="max-w-sm card-content h-[46%] mt-[20px]">
+        <Card className="max-w-sm card-content-home h-[46%] mt-[20px]">
             <img src={Image2} alt="Logitech Speaker" className="w-[100%] h-[180px] object-cover rounded-lg mt-4" />
             <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
               Easy Control 

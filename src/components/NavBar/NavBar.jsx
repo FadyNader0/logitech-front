@@ -28,6 +28,7 @@ export default function NavBar() {
   const IsLogin = useSelector(state => state.login.isLogin);
   const userData = useSelector(state => state.userSlice.info);
   const cart= useSelector(state => state.cart.info);
+  const messagesState = useSelector(state => state.NumberMessages.isNew);
   const [showCart, setShowCart] = useState(false);
   useCartData()
   const Logout = () =>{
@@ -70,8 +71,9 @@ export default function NavBar() {
                 <Link to="/favourites"><AiFillHeart /></Link>
                 <h6>Favourites</h6>
             </li>
-            <li className={`icon ${location.pathname === '/Support' ? 'active' : ''}`}>
-              <Link to="/Support"><BiSupport /></Link>
+            <li className={`icon ${location.pathname === '/support' ? 'active' : ''}`}>
+              <Link to="/support"><BiSupport /></Link>
+              {messagesState === true && <span className="notification-badge-support"></span>}
               <h6>Support</h6>
             </li>
             <li className="icon">

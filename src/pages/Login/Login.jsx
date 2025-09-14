@@ -11,6 +11,7 @@ import { UploadImage } from '../../utilitas/uploadImage';
 import Loader from '../../components/LoaderLogin/LoaderLogin';
 import {sendOTPEmail} from '../../utilitas/sendOtpEmail'
 import CheckOTP from '../../components/CheckOTP/CheckOTP';
+import NavInAnotherPage from '../../components/NavInAnotherPage/NavInAnotherPage';
 
 
 export default function Login() {
@@ -52,7 +53,8 @@ export default function Login() {
                         name: user[0].UserName,
                         email: user[0].Email,
                         phone: user[0].PhoneNumber,
-                        profileImage: user[0].Image
+                        profileImage: user[0].Image,
+                        unReadMassages: user[0].unReadMassages,
                 };
                 dispatch(setUser(userData));
                 if (rememberMe){
@@ -85,7 +87,8 @@ export default function Login() {
                     PhoneNumber: PhoneNumber,   
                     Active: false,
                     Image:  imageUrl,
-                    OTP : generatedOtp
+                    OTP : generatedOtp,
+                    unReadMassages: 0,
                 };    
                 await addUser(newUser);
                 await sendOTPEmail(EmailNew, generatedOtp);
@@ -106,6 +109,7 @@ export default function Login() {
 
     return (
         <>
+            <NavInAnotherPage />
             
             <div className="login-page">
                 <div className="content-page" data-aos="zoom-in-up">

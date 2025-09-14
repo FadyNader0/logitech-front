@@ -12,10 +12,6 @@
 }
 .homeProduct {
     width: 79%;
-    /* background-image: url('../../assets/images/test caht3.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center; */
     border-radius: 20px;
     margin-right: 20px;
     padding: 15px;
@@ -57,52 +53,38 @@
     cursor: pointer;
 }
 
-
-.home .homeProduct .centerContent{
-    height: 100vh;
-    position: relative;
-}
-.home .homeProduct .centerContent .speaker{
-    position: absolute;
-    left: 60%;
-    bottom: -50px;
-    transform: translateX(-60%);
-    z-index: 1;
-
-    
-}
 .home .homeProduct .downContent{
     position: absolute;
     bottom: 0;
     left: 0;
     
 }
-.home .homeProduct .downContent .card-content{
+.home .homeProduct .downContent .card-content-home{
     background-color: var(--background2-color);
     border: none;
     border-radius: 20px;
-    box-shadow: 4px -8px 0px 20px var(--background-color);
+    box-shadow: 4px -8px 0px 20px #1e1e1eab;
 }
-.home .homeProduct .downContent .card-content .btn-shop{
+.home .homeProduct .downContent .card-content-home .btn-shop{
     background-color: var(--icon-color);
     color: var(--background2-color);
     transition: all 0.5s ease-in-out;
 
 }
-.home .homeProduct .downContent .card-content .btn-shop:hover{
+.home .homeProduct .downContent .card-content-home .btn-shop:hover{
     background-color: rgba(255, 255, 255, 0.644);
 }
-.home .homeProduct .downContent .card-content .btn-shop svg{
+.home .homeProduct .downContent .card-content-home .btn-shop svg{
     transition: all 0.5s ease-in-out;
 }
-.home .homeProduct .downContent .card-content .btn-shop:hover svg{
+.home .homeProduct .downContent .card-content-home .btn-shop:hover svg{
     transform: translateX(10px);
     
 }
 .home .homeContent{
     width: 22%;
 }
-.home .homeContent .card-content{
+.home .homeContent .card-content-home{
     background-color: var(--background2-color);
     border: none;
     border-radius: 20px;
@@ -151,7 +133,7 @@
         justify-content: space-between;
         
     }
-    .home .homeContent .card-content {
+    .home .homeContent .card-content-home {
         height: 400px !important;
         max-width: 45% !important;
         margin: 0 auto;
@@ -163,21 +145,19 @@
         height: 70vh;
     }
     .home .homeProduct .downContent {
-        bottom: -210px;
-        
-        
+        bottom: -195px;
     }
-    .home .homeProduct .downContent .card-content {
+    .home .homeProduct .downContent .card-content-home {
         max-width: 100% !important;
         box-shadow: none;
         border-radius: 45px;
         padding-bottom: 10px;
     }
     .home .homeContent {
-        margin-top: 235px;
+        margin-top: 220px;
         flex-direction: column;
     }
-    .home .homeContent .card-content{
+    .home .homeContent .card-content-home{
         max-width: 100% !important;
         margin-bottom: 20px;
     }
@@ -202,3 +182,4 @@
         z-index: -1;
     }
 }
+

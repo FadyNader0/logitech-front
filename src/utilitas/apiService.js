@@ -8,3 +8,4 @@ export const uploadImage = (formData) => Api.post("user-files/upload-file/", for
 export const getProducts = () => Api.get(`https://api.baserow.io/api/database/rows/table/659209/?user_field_names=true`);
 export const getCatogries = () => Api.get(`https://api.baserow.io/api/database/rows/table/662267/?user_field_names=true`);
 export const getFromCart = () => Api.get(`https://api.baserow.io/api/database/rows/table/667031/?user_field_names=true`);
+export const getMessages = () => Api.get("https://api.baserow.io/api/database/rows/table/672455/?user_field_names=true");

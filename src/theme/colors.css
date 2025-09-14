@@ -14,5 +14,11 @@
   --shop-warning: #f59e0b;
   --shop-error: #ef4444;
 
-  
+
+  /* favourites */
+  --favourites-gradient-1: linear-gradient(135deg, #3a82f7, #6366f1);
+  --favourites-white-alpha-light: rgba(255,255,255,0.05);
+  --favourites-white-alpha: rgba(255,255,255,0.1);
+  --favourites-white-alpha-medium: rgba(255,255,255,0.3);
+  --favourites-black-alpha-light: rgba(0,0,0,0.3);
 }

@@ -5,6 +5,7 @@ import ProductCard from '../../components/ProductCard/ProductCard';
 import {getProducts} from '../../utilitas/apiService'
 import {getCatogries} from '../../utilitas/apiService'
 import LoadinShop from '../../components/LoadinShop/LoadinShop'
+import NavInAnotherPage from '../../components/NavInAnotherPage/NavInAnotherPage';
 
 
 // Categories for filter
@@ -173,6 +174,8 @@ export default function Shop() {
   const paginate = (pageNumber) => {setCurrentPage(pageNumber) , window.scrollTo({ top: 0, behavior: "smooth" });};
   
   return (
+    <>
+    <NavInAnotherPage />
     <div className="shop-container" data-aos="fade-right" data-aos-duration="1500">
       {/* Mobile filter toggle */}
       <button 
@@ -260,16 +263,16 @@ export default function Shop() {
       <div className="products-section">
         {/* Search bar */}
         <div 
-          className={`search-container ${isSearchFocused ? 'focused' : ''} `} 
+          className={`search-container-shop ${isSearchFocused ? 'focused' : ''} `} 
           onClick={focusSearchInput}
 
         >
-          <div className="search-icon">
+          <div className="search-icon-shop">
             <FiSearch />
           </div>
           <input
             type="text"
-            className="search-input"
+            className="search-input-shop"
             placeholder="Search products..."
             value={searchQuery}
             onChange={handleSearchChange}
@@ -342,9 +345,9 @@ export default function Shop() {
         
         {/* Pagination */}
         {filteredProducts.length > productsPerPage && (
-          <div className="pagination">
+          <div className="pagination-shop">
             <button 
-              className="pagination-button"
+              className="pagination-shop-button"
               onClick={() => paginate(currentPage > 1 ? currentPage - 1 : 1)}
               disabled={currentPage === 1}
             >
@@ -354,7 +357,7 @@ export default function Shop() {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
               <button
                 key={number}
-                className={`pagination-button ${currentPage === number ? 'active' : ''}`}
+                className={`pagination-shop-button ${currentPage === number ? 'active' : ''}`}
                 onClick={() => paginate(number)}
               >
                 {number}
@@ -362,7 +365,7 @@ export default function Shop() {
             ))}
             
             <button 
-              className="pagination-button"
+              className="pagination-shop-button"
               onClick={() => paginate(currentPage < totalPages ? currentPage + 1 : totalPages)}
               disabled={currentPage === totalPages}
             >
@@ -372,5 +375,6 @@ export default function Shop() {
         )}
       </div>
     </div>
+    </>
   );
 }

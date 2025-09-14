@@ -21,7 +21,6 @@ export default function ProductCard({ product }){
         setFavorites([...favorites, productId]);
         }
     };
-    
     // Add to cart
     const addToCart = async (productId , productPrice ,productImage) => {
         setIsLoading(true)
@@ -63,7 +62,7 @@ export default function ProductCard({ product }){
                 <div className="product-price">
                         {product.sale !== "0.00" ? (
                             <>
-                            <span className="line-through text-gray-500 decoration-red-500 decoration-1">{product.price} $</span>
+                            <span className="line-through text-gray-500 decoration-red-500 decoration-1">$ {product.price}</span>
                             <span className="font-bold block">$ {finalPrice}</span>
                             </>
                         ) : (
