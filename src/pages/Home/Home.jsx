@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card } from "flowbite-react";
 import Image from "../../assets/images/stero.png";
 import Image2 from "../../assets/images/control.png";
-import { useDispatch } from 'react-redux'
+import {useSelector ,  useDispatch } from 'react-redux'
 import { toggleOpenClose } from '../../features/NavBar/Open&Close';
 import Logo from '../../components/Logo/Logo';
 import './Home.css';
@@ -12,6 +12,7 @@ import './Home.css';
 
 export default function Home() {
   const dispatch = useDispatch();
+  const messagesState = useSelector(state => state.NumberMessages.isNew);
   
 
   return (
@@ -43,6 +44,7 @@ export default function Home() {
           </div>
           <div className={`buttonNav ${window.innerWidth > 1023 ? "disabled-link" : ""}`} >
             <AiOutlineMenuFold className="button" onClick={() => dispatch(toggleOpenClose())}/>
+            {messagesState === true && window.innerWidth < 1023  && <span className="notification-badge-home"></span>}
           </div>
         </div>
         <div className="downContent" data-aos="zoom-in-right" data-aos-delay="700">

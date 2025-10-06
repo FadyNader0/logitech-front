@@ -44,7 +44,19 @@
     border-bottom-right-radius: 250px;
     z-index: -1;
 }
+.buttonNav{
+    position: relative;
+}
+.notification-badge-home {
+    position: absolute;
+    top: 5px;
+    right: 4px;
+    width: 12px;
+    height: 12px;
+    background-color: red;
+    border-radius: 50%;
 
+}
 .home .homeProduct .buttonNav .button{
     font-size: 40px;
     border: 1px solid var(--icon-color);

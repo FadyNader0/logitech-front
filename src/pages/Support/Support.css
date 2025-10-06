@@ -119,7 +119,7 @@
 
 .chat-input textarea {
   flex: 1;
-  padding: 0.8rem 1.4rem;
+  padding: 0.8rem 1.8rem;
   border-radius: 999px;
   border: none;
   outline: none;
@@ -165,5 +165,12 @@
   }
   to {
     top: 0;
+  }
+}
+
+@media(max-width: 1023px) {
+  .chat-wrapper{
+    margin-top: 80px;
+    height: calc(100vh - 100px);
   }
 }

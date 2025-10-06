@@ -486,6 +486,7 @@
   
 }
 
+
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -495,7 +496,13 @@
 }
 
 /* Loading styles */
-
+.loadingInShop{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
 /* No products found section */
 .no-products {
   grid-column: 1 / -1;

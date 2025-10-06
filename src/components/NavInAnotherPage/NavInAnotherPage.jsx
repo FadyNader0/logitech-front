@@ -1,12 +1,12 @@
 import './NavInAnotherPage.css'
 import Logo from "../Logo/Logo";
 import { AiOutlineMenuFold } from "react-icons/ai"; 
-import { useDispatch } from 'react-redux'
+import {useSelector, useDispatch } from 'react-redux'
 import { toggleOpenClose } from '../../features/NavBar/Open&Close';
-
 
 export default function NavInAnotherPage() {
     const dispatch = useDispatch();
+    const messagesState = useSelector(state => state.NumberMessages.isNew);
 
     return (
         <div className="navbar-another flex justify-between items-center">
@@ -18,6 +18,7 @@ export default function NavInAnotherPage() {
             </div>
             <div className="open-nav">
                 <AiOutlineMenuFold className="text-2xl" onClick={() => dispatch(toggleOpenClose())}/>
+                {messagesState === true && <span className="notification-badge"></span>}
             </div>
         </div>
     );

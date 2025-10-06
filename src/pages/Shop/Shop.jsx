@@ -322,7 +322,9 @@ export default function Shop() {
         {/* Products grid */}
         <div className="products-grid">
           {isLoading ? (
-            <LoadinShop />
+            <div className="loadingInShop">
+              <LoadinShop />
+            </div>
           ) : currentProducts.length > 0 ? (
             currentProducts.map(product => (
               <div key={product.id} className="product-card" data-aos="flip-right" data-aos-duration="1500">
