@@ -6,6 +6,8 @@ import {getProducts} from '../../utilitas/apiService'
 import {getCatogries} from '../../utilitas/apiService'
 import LoadinShop from '../../components/LoadinShop/LoadinShop'
 import NavInAnotherPage from '../../components/NavInAnotherPage/NavInAnotherPage';
+import { getFavouritesFunction } from '../../utilitas/getFavourites';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 // Categories for filter
@@ -26,10 +28,29 @@ export default function Shop() {
   const [categoryFilters, setCategoryFilters] = useState([]);
   const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 });
   const [saleFilter, setSaleFilter] = useState(false);
+  const dispatch = useDispatch();
+  const userData = useSelector(state => state.userSlice.info);
+  const loadinSlice = useSelector(state => state.loading.info);
   
   const productsPerPage = 10;
   
 
+  // get favourites product 
+  useEffect(() => {
+    const fetchFavourites = async () => {
+      try {
+          await getFavouritesFunction(userData , dispatch);
+      } catch (error) {
+        console.error("Error fetching favourites:", error);
+      }
+    };
+    fetchFavourites();
+  }, []);
+
+  // loading state from redux
+  useEffect(() => {
+    setIsLoading(loadinSlice);
+  }, [loadinSlice]);
   
   // Toggle category filter
   const toggleCategoryFilter = (category) => {

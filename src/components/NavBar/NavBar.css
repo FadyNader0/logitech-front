@@ -46,6 +46,12 @@
     position: relative;
     
 }
+.userDataImage{
+    max-width: 25px !important;
+    max-height: 25px !important;
+    object-fit: cover;
+    object-position: top;
+}
 .navbar .icon .cart-link .number-cart{
     position: absolute;
     top: -22px;

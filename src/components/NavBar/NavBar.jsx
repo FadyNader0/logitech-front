@@ -5,7 +5,7 @@ import { AiFillHome } from "react-icons/ai";
 import { AiFillShopping } from "react-icons/ai"; 
 import { MdAccountCircle } from "react-icons/md"; 
 import { Link, useLocation } from 'react-router-dom';
-import { useSelector , useDispatch} from 'react-redux'
+import { useSelector , useDispatch} from 'react-redux';
 import { toggleOpenClose } from '../../features/NavBar/Open&Close';
 import {clearUser} from '../../features/UserDataFeature';
 import { toast } from 'react-toastify';

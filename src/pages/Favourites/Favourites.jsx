@@ -2,94 +2,58 @@ import React, { useState, useEffect } from 'react';
 import { FaHeart, FaSearch, FaThList, FaThLarge, FaTrash, FaTimes } from 'react-icons/fa';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import './Favourites.css';
+import { getFavouritesFunction } from '../../utilitas/getFavourites';
+import { useDispatch, useSelector } from 'react-redux';
+import {deleteFavouriteFunction} from '../../utilitas/deleteAllFavourite';
+import { toast } from 'react-toastify';
+import NavInAnotherPage from '../../components/NavInAnotherPage/NavInAnotherPage';
 
-// Mock data for favourites
-const mockFavourites = [
-  {
-    id: 1,
-    name: 'Logitech MX Master 3S',
-    price: 99.99,
-    image: '/images/products/mx-master-3s.png',
-    category: 'Mouse',
-    rating: 4.9,
-    sale: true,
-    salePercentage: 15,
-    originalPrice: 119.99,
-    description: 'Advanced wireless mouse with ultra-fast scrolling and ergonomic design.',
-    inStock: true
-  },
-  {
-    id: 2,
-    name: 'Logitech G Pro X Superlight',
-    price: 149.99,
-    image: '/images/products/g-pro-superlight.png',
-    category: 'Mouse',
-    rating: 4.8,
-    sale: false,
-    originalPrice: 149.99,
-    description: 'Ultra-lightweight wireless gaming mouse designed for esports professionals.',
-    inStock: true
-  },
-  {
-    id: 3,
-    name: 'Logitech MX Keys',
-    price: 119.99,
-    image: '/images/products/mx-keys.png',
-    category: 'Keyboard',
-    rating: 4.7,
-    sale: true,
-    salePercentage: 10,
-    originalPrice: 129.99,
-    description: 'Advanced wireless illuminated keyboard with perfect stroke typing.',
-    inStock: true
-  },
-  {
-    id: 4,
-    name: 'Logitech G915 TKL',
-    price: 229.99,
-    image: '/images/products/g915-tkl.png',
-    category: 'Keyboard',
-    rating: 4.8,
-    sale: false,
-    originalPrice: 229.99,
-    description: 'Wireless RGB mechanical gaming keyboard with low profile GL switches.',
-    inStock: false
-  },
-  {
-    id: 5,
-    name: 'Logitech G Pro X Headset',
-    price: 129.99,
-    image: '/images/products/g-pro-x-headset.png',
-    category: 'Headset',
-    rating: 4.6,
-    sale: true,
-    salePercentage: 20,
-    originalPrice: 159.99,
-    description: 'Professional gaming headset with Blue VO!CE microphone technology.',
-    inStock: true
-  },
-  {
-    id: 6,
-    name: 'Logitech Brio 4K Webcam',
-    price: 199.99,
-    image: '/images/products/brio-4k.png',
-    category: 'Webcam',
-    rating: 4.5,
-    sale: false,
-    originalPrice: 199.99,
-    description: 'Ultra HD 4K webcam with HDR and Windows Hello support.',
-    inStock: true
-  }
-];
+
+
 
 const Favourites = () => {
   // State for favourites
-  const [favourites, setFavourites] = useState(mockFavourites);
+  const dispatch = useDispatch();
+  const [favourites, setFavourites] = useState([]);
   const [filteredFavourites, setFilteredFavourites] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOption, setSortOption] = useState('newest');
   const [viewMode, setViewMode] = useState('grid');
   const [isLoading, setIsLoading] = useState(true);
+  const userData = useSelector(state => state.userSlice.info);
+  const favouritesProducts = useSelector(state => state.favourites.info);
+  const loadingSlice = useSelector(state => state.loading.info);
+  const favouritesRows = useSelector(state => state.favouritesRows.info);
+
+  // Fetch favourites on component mount
+  useEffect(() => {
+    const fetchFavourites = async () => {
+      try {
+         await getFavouritesFunction(userData , dispatch);
+      } catch (error) {
+        console.error("Error fetching favourites:", error);
+      }
+    };
+    fetchFavourites();
+  }, []);
+
+
+
+  // loading state from redux
+  useEffect(() => {
+    setIsLoading(loadingSlice);
+  }, [loadingSlice]);
+
+
+  // set loading true after check loading of redux 
+  useEffect(() => {
+    setIsLoading(true);
+  }, []);
+
+  // Update local favourites state when Redux store changes
+  useEffect(() => {
+    setFavourites(favouritesProducts);
+  }, [favouritesProducts]);
 
   // Simulate loading
   useEffect(() => {
@@ -107,7 +71,7 @@ const Favourites = () => {
     if (searchQuery) {
       result = result.filter(item => 
         item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.category[0].value.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.description.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
@@ -152,8 +116,17 @@ const Favourites = () => {
 
 
   // Handle clear all
-  const handleClearAll = () => {
-    setFavourites([]);
+  const handleClearAll = async () => {
+    try{
+      setIsLoading(true);
+      await deleteFavouriteFunction(favouritesRows);
+      await getFavouritesFunction(userData , dispatch);
+      toast.success("Cleared all favourites successfully")
+    }catch(error){
+      console.error("Error clearing favourites:", error);
+    }finally{
+      setIsLoading(false);
+    }
   };
 
   // Handle clear search
@@ -162,6 +135,8 @@ const Favourites = () => {
   };
 
   return (
+    <>
+    <NavInAnotherPage />
     <div className="wishlist-main-container">
       {/* Header Section */}
       <header className="wishlist-header-section">
@@ -267,10 +242,7 @@ const Favourites = () => {
         ) : (
           <div className={`wishlist-items-grid ${viewMode}`}>
             {filteredFavourites.map((product) => (
-              <div 
-                key={product.id}
-                className="wishlist-item-wrapper"
-              >
+              <div key={product.id} className="product-card" data-aos="flip-right" data-aos-duration="1500">
                 <ProductCard product={product} />
               </div>
             ))}
@@ -278,6 +250,7 @@ const Favourites = () => {
         )}
       </main>
     </div>
+    </>
   );
 };
 

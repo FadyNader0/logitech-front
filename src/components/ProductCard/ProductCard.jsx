@@ -6,19 +6,43 @@ import { addToCartDB } from '../../utilitas/addToCart';
 import { toast } from 'react-toastify';
 import {addToCartNumber} from '../../features/GetCart'
 import LoadinShop from '../LoadinShop/LoadinShop';
+import {addFavourites} from '../../utilitas/addFavourites';
+import { getFavouritesFunction } from '../../utilitas/getFavourites';
+import { deleteFavouriteFunction } from '../../utilitas/deleteFavourite';
+import {setloading} from '../../features/loading';
+
+
 
 export default function ProductCard({ product }){
     const dispatch = useDispatch()
-    const [favorites, setFavorites] = useState([]);
     const [isLoading , setIsLoading] = useState(false)
     const userData = useSelector(state => state.userSlice.info)
+    const favouriteRows = useSelector(state => state.favouritesRows.info)
+    const favoritesProducts = useSelector(state => state.favourites.info)
+    const [favorites, setFavorites] = useState(favoritesProducts.map(item => item.id));
     let finalPrice
       // Toggle favorite status
-    const toggleFavorite = (productId) => {
-        if (favorites.includes(productId)) {
-        setFavorites(favorites.filter(id => id !== productId));
-        } else {
-        setFavorites([...favorites, productId]);
+    const toggleFavorite = async (productId) => {
+        try {
+            dispatch(setloading(true))
+            if (favorites.includes(productId)) {
+                const favoriteId = favouriteRows.find(item => item.product[0].id === productId);
+                await deleteFavouriteFunction(favoriteId.id);
+                await getFavouritesFunction(userData , dispatch);
+                setFavorites(favorites.filter(id => id !== productId));
+                toast.success("Removed from favourites successfully")
+                
+            } else {
+                await addFavourites(userData.id , productId);
+                await getFavouritesFunction(userData , dispatch);
+                setFavorites([...favorites, productId]);
+                toast.success("Added to favourites successfully")
+            }
+
+        } catch (error) {
+            console.error("Error toggling favorite:", error);
+        }finally{
+            dispatch(setloading(false))
         }
     };
     // Add to cart
