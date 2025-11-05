@@ -68,18 +68,19 @@ export default function ProductCard({ product }){
             <div className="product-image-container">
                 <img src={product.image} alt={product.name} className="product-image"  />
                 {product.sale !== "0.00" && <span className="product-badge">{`${product.sale} %`}</span>}
-                <div className="product-actions">
-                <button 
+            </div>
+            <div className="product-info">
+                <div className="product-category flex items-center justify-between">
+                    {product.category[0].value}
+                    <button 
                     className={`action-button favorite-button ${favorites.includes(product.id) ? 'active' : ''}`}
                     onClick={() => toggleFavorite(product.id)}
                     aria-label="Add to favorites"
-                >
-                    <FiHeart />
+                    >
+                        <FiHeart />
                 </button>
+
                 </div>
-            </div>
-            <div className="product-info">
-                <div className="product-category">{product.category[0].value}</div>
                 <h3 className="product-name">{product.name}</h3>
                 <p className="product-description">{product.description}</p>
                 <div className="product-footer">

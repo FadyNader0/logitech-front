@@ -15,7 +15,7 @@
     position: relative;
 }
 .login-page .content-page .welcome{
-    transition: all 1.5s ease-in-out;
+    transition: all 1s ease-in-out;
     text-align: center;
     padding-top: 100px;
     position: absolute;
@@ -120,6 +120,42 @@
 }
 
 
+.passwordInput:focus + .passwordMessage{
+    opacity: 1;
+}
+.passwordMessage{
+    position: absolute;
+    top: 115%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 17px;
+    z-index: 10;
+    background-color: var(--background-color);
+    padding: 4px 8px;
+    border-radius: 8px;
+    width: 80%;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    
+
+}
+
+.buttonShowPassword{
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+
+
+
+
 .login-btn {
   width: 80%;
   padding: 14px;
@@ -194,6 +230,13 @@
 .file-label:hover {
   border-color: #4cafef;
   color: #4cafef;
+}
+
+.signupButton.disactive {
+    pointer-events: none;
+    opacity: 0.6;
+    background-color: #2b2a2a; 
+    color: #ffffff; 
 }
 
 

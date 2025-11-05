@@ -1,3 +1,5 @@
+import { AiFillEye } from "react-icons/ai"; 
+import { AiFillEyeInvisible } from "react-icons/ai"; 
 import React, { useState } from 'react';
 import './Login.css';
 import Logo from '../../components/Logo/Logo';
@@ -26,6 +28,9 @@ export default function Login() {
     const [rememberMe, setRememberMe] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showCheckOtp, setshowCheckOtp] = useState(false);
+    const [passwordMessage , setPasswordMessage] = useState("❌ Password is weak");
+    const [showPassword, setShowPassword] = useState(false);
+    const [signupState, setSignupState] = useState(false)
     const dispatch = useDispatch();
     async function HandelLogin() {
         if (!Email || !Password) {
@@ -65,6 +70,7 @@ export default function Login() {
             console.error("Login error:", err);
         }finally{
             setLoading(false);
+            clearForm();
         }
     }
     async function HandelSignup() {
@@ -107,6 +113,39 @@ export default function Login() {
         }
     }
 
+    const checkPassword = (value) => {
+        const upper = (value.match(/[A-Z]/g) || []).length;
+        const lower = (value.match(/[a-z]/g) || []).length;
+        const special = (value.match(/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/g) || []).length;
+
+        if (value.length >= 12 && upper >= 2 && lower >= 2 && special >= 1) {
+            setPasswordMessage("✅ Password is strong");
+            setSignupState(true);
+        } else if (value.length >= 8 && upper >= 1 && lower >= 1) {
+            setPasswordMessage("🟡 Password is fair");
+            setSignupState(true);
+        } else {
+            setPasswordMessage("❌ Password is weak");
+            setSignupState(false);
+        }
+    }
+    const handlePasswordChange = (e) => {
+        const value = e.target.value;
+        setPasswordNew(value);
+        checkPassword(value);
+    }
+    const clearForm = () => {
+        setUserName("");
+        setEmailNew("");
+        setPasswordNew("");
+        setPhoneNumber("");
+        setImage("");
+        setPasswordMessage("❌ Password is weak");
+        setSignupState(false);
+        setEmail("");
+        setPassword("");
+        setImage("");
+    }
     return (
         <>
             <NavInAnotherPage />
@@ -133,8 +172,15 @@ export default function Login() {
                                 <label>Email Address</label>
                             </div>
                             <div className="input-group">
-                                <input type="password" required value={Password} onChange={(e) => setPassword(e.target.value)} />
+                                <input type={showPassword ? "text" : "password"} required value={Password} onChange={(e) => setPassword(e.target.value)} />
                                 <label>Password</label>
+                                <span
+                                    className="buttonShowPassword"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                >
+                                    {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+                                </span>                            
+
                             </div>
                             <div className="remember-me mt-4 flex items-center gap-2">
                                 <input type="checkbox"  id='rember'  onChange={(e) => setRememberMe(e.target.checked)} />
@@ -162,8 +208,15 @@ export default function Login() {
                                 <label>Email Address</label>
                             </div>
                             <div className="input-group">
-                                <input type="password" required value={PasswordNew} onChange={(e) => setPasswordNew(e.target.value)}/>
+                                <input className='passwordInput' type={showPassword ? "text" : "password"} required value={PasswordNew} onChange={(e) => handlePasswordChange(e)}/>
+                                <p className='passwordMessage'>{passwordMessage}</p>
                                 <label>Password</label>
+                                <span
+                                    className="buttonShowPassword"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                >
+                                    {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+                                </span>                            
                             </div>
                             <div className="input-group">
                                 <input type="text" required value={PhoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}/>
@@ -173,7 +226,7 @@ export default function Login() {
                                 <input type="file" id="image" accept="image/*" required  onChange={(e) => setImage(e.target.files[0])}/>
                                 <label htmlFor="image" className="file-label">Choose Profile Image</label>
                             </div>
-                            <button className="mt-4 login-btn" onClick={() => {HandelSignup()}}>
+                            <button className={`mt-4 login-btn signupButton ${signupState ? "" : "disactive"} `} onClick={() => {HandelSignup()}}>
                                 Sign Up
                                 
                                 
@@ -192,7 +245,7 @@ export default function Login() {
                 </div>
             </div>
             {loading && <div className="loader"> <Loader/> </div>}
-            {showCheckOtp && <CheckOTP userEmail ={EmailNew}  onClose={() => setshowCheckOtp(false)}/> }
+            {showCheckOtp && <CheckOTP userEmail ={EmailNew}  onClose={() => {setshowCheckOtp(false) , clearForm();}}/> }
         </>
     );
 
