@@ -14,6 +14,7 @@ import Loader from '../../components/LoaderLogin/LoaderLogin';
 import {sendOTPEmail} from '../../utilitas/sendOtpEmail'
 import CheckOTP from '../../components/CheckOTP/CheckOTP';
 import NavInAnotherPage from '../../components/NavInAnotherPage/NavInAnotherPage';
+import {hashPassword , comparePassword} from '../../utilitas/hashPassword'
 
 
 export default function Login() {
@@ -42,12 +43,12 @@ export default function Login() {
             const res = await getUser();
             const users = res.data.results;
             const user = users.filter(u => u.Email === Email);
+            const isPasswordMatch = await comparePassword(Password, user[0]?.Password || "");
             if (user.length === 0 || user[0].Active===false) {
                 toast.error("No user found or inactive with this email.");
                 
                 return;
-            }else if (user[0].Password !== Password) {
-                console.log(user[0].Password);
+            }else if (isPasswordMatch === false) {
                 toast.error("Incorrect password.");
                 return;
             }else{
@@ -86,10 +87,11 @@ export default function Login() {
             const generatedOtp = Math.floor(100000 + Math.random() * 900000).toString(); 
             if (user.length === 0) {
                 const imageUrl = await UploadImage(Image);
+                const hashedPassword = await hashPassword(PasswordNew);
                 const newUser = {
                     Email: EmailNew,
                     UserName: UserName,
-                    Password: PasswordNew,
+                    Password: hashedPassword,
                     PhoneNumber: PhoneNumber,   
                     Active: false,
                     Image:  imageUrl,
@@ -168,7 +170,7 @@ export default function Login() {
                             <h3 className='mb-3 text-3xl'>Welcome</h3>
                             <p className="">Please login in to your account to continue</p>
                             <div className="input-group">
-                                <input type="email" required  onChange={(e) => setEmail(e.target.value)}/>
+                                <input type="email" required value={Email}  onChange={(e) => setEmail(e.target.value)}/>
                                 <label>Email Address</label>
                             </div>
                             <div className="input-group">
