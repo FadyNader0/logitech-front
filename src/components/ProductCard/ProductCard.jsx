@@ -104,7 +104,7 @@ export default function ProductCard({ product }){
                     <FiShoppingCart /> {product.stock !== "0" ? 'Add to Cart' : 'Out of Stock'}
                 </button>
                 ):
-                    <LoadinShop />
+                    <p className='loadingButton'> Loading...... </p>
                 }               
                 </div>
             </div>
