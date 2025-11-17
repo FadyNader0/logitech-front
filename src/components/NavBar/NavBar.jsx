@@ -32,10 +32,13 @@ export default function NavBar() {
   const [showCart, setShowCart] = useState(false);
   useCartData()
   const Logout = () =>{
-    dispatch(clearUser());
-    toast.info("Logout successful!");
-    dispatch(setLogin(false));
-    dispatch(removeCart())
+    if (window.confirm("Are you sure you want to logout?")){
+
+      dispatch(clearUser());
+      toast.info("Logout successful!");
+      dispatch(setLogin(false));
+      dispatch(removeCart())
+    }
   };
   return (
     <>
